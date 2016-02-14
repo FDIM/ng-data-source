@@ -1,0 +1,31 @@
+{
+  "name": "ng-data-source",
+  "main": "dist/ng-data-source.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/FDIM/ng-data-source.git",
+  "authors": [
+    "FDIM <domas.trijonis@gmail.com>"
+  ],
+  "description": "A factory to help you deal with infinite loading. ",
+  "keywords": ["angular", "data-source", "ng-data-source"],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    ".idea",
+    ".gitignore",
+    "node_modules",
+    "tests",
+    "LICENSE",
+    "bower_components",
+    "coverage",
+    "gulpfile.js",
+    "package.json",
+    "*.conf.js"
+  ],
+  "dependencies": {
+    "angular": ">=1.0.8"
+  },
+  "devDependencies": {
+    "angular-mocks": ">=1.0.8"
+  }
+}
