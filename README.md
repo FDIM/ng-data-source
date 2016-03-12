@@ -11,7 +11,7 @@ A factory to help you deal with infinite loading.
 model.dataSource = dataSource(loadItems);
 
 function loadItems(token){
-  // token = last item in collection or a token returned from you service call
+  // token = a token returned from your service call. If it is falsey, this method will not be invoked.
   return myService.fetchItems();
 }
 
