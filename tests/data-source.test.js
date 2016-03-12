@@ -22,19 +22,18 @@ describe('data source', function () {
   it("should yield one item and have correct token", function(){
     var ob = dataSource(function(token){
       return $q(function(resolve, reject){
-        resolve({items:[{}], totalCount:1, token:"abc"});        
+        resolve({items:[{}], token:"abc"});        
       });
     });  
     expect(ob.loading).toBeTruthy();
     $rootScope.$digest();
     
     expect(ob.items.length).toBe(1);
-    expect(ob.totalCount).toBe(1);
     expect(ob.token).toBe('abc');
     expect(ob.loading).not.toBeTruthy();
   });
   
-  it("should yield one item and have last item as token", function(){
+  it("should yield one item and have no token", function(){
     var item = {};
     var ob = dataSource(function(token){
       return $q(function(resolve, reject){
@@ -45,26 +44,23 @@ describe('data source', function () {
     $rootScope.$digest();
     
     expect(ob.items.length).toBe(1);
-    expect(ob.totalCount).toBe(1);
-    expect(ob.token).toEqual(item);
-    console.info(ob);
+    expect(ob.token).toEqual(false);
     expect(ob.loading).not.toBeTruthy();
   });
   
   it("should yield 2 items and have correct token", function(){
     var ob = dataSource(function(token){
       return $q(function(resolve, reject){
-        resolve({items:[{}], totalCount:2, token:"abc"});        
+        resolve({items:[{}], token:"abc"});        
       });
     });  
     $rootScope.$digest();
     expect(ob.items.length).toBe(1);
-    expect(ob.totalCount).toBe(2);
     expect(ob.token).toBe('abc');
     // overwrite callback
     ob.callback = function(token){
       return $q(function(resolve, reject){
-        resolve({items:[{}], totalCount:2, token:"abcd"});        
+        resolve({items:[{}], token:"abcd"});        
       });
     };
     ob.load();
@@ -73,7 +69,6 @@ describe('data source', function () {
     $rootScope.$digest();
     expect(ob.firstLoad).not.toBeTruthy();
     expect(ob.items.length).toBe(2);
-    expect(ob.totalCount).toBe(2);
     expect(ob.token).toBe('abcd');
   });
 });

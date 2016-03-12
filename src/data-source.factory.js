@@ -21,7 +21,7 @@
 
         DataSource.prototype.load = function () {
 
-            if ((this.items.length < this.totalCount && !this.loading) || this.firstLoad) {
+            if ((this.token && !this.loading) || this.firstLoad) {
                 this.loading = true;
                 this.firstLoad = false;
                 this.callback(this.token)
@@ -31,8 +31,7 @@
         };
 
         DataSource.prototype.onLoad = function (result) {
-            this.token = typeof result.token !== 'undefined' ? result.token : result.items[result.items.length-1];
-            this.totalCount = result.totalCount || result.items.length;
+            this.token = typeof result.token !== 'undefined' ? result.token : false;
             // append new values
             for (var i = 0; i < result.items.length; i++) {
                 this.items.push(result.items[i]);
