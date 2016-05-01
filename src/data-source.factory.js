@@ -6,7 +6,7 @@
  * ensures that all module declarations occur before any module references.
  */
 (function (module) {
-    // 
+    //
     module.factory('dataSource', function () {
 
         function DataSource(callback) {
@@ -31,6 +31,9 @@
         };
 
         DataSource.prototype.onLoad = function (result) {
+            if(!result){
+              return;
+            }
             this.token = typeof result.token !== 'undefined' ? result.token : false;
             // append new values
             for (var i = 0; i < result.items.length; i++) {
